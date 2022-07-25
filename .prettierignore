@@ -1,0 +1,13 @@
+# .prettierignore
+
+/.husky
+/.vscode
+/.fest
+/dist
+/test
+/insert
+/offline
+/packed
+/demo
+/node_modules
+/public

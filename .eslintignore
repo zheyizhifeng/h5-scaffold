@@ -1,0 +1,15 @@
+/.husky
+/.vscode
+/.fest
+/dist
+/test
+/insert
+/offline
+/packed
+/demo
+/node_modules
+/public
+!.commitlintrc.js
+!.cz-config.js
+!.prettierrc.js
+!.stylelintrc.js

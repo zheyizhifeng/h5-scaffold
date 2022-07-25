@@ -1,0 +1,42 @@
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("../../assets/images/sprite.png");
+  background-size: 226px 177px;
+}
+
+.icon-delivery {
+  width: 85px;
+  height: 85px;
+  background-position: 0 0;
+}
+
+.icon-friends {
+  width: 85px;
+  height: 85px;
+  background-position: -87px 0;
+}
+
+.icon-goods {
+  width: 85px;
+  height: 85px;
+  background-position: 0 -87px;
+}
+
+.icon-line {
+  width: 135px;
+  height: 3px;
+  background-position: 0 -174px;
+}
+
+.icon-shareit-avatar {
+  width: 66px;
+  height: 66px;
+  background-position: -87px -87px;
+}
+
+.icon-view {
+  width: 52px;
+  height: 52px;
+  background-position: -174px 0;
+}
