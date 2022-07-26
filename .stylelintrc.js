@@ -5,7 +5,6 @@ module.exports = {
     "stylelint-prettier/recommended",
     "stylelint-config-prettier",
   ],
-  defaultSeverity: "warning",
   rules: {
     "at-rule-no-unknown": [
       true,

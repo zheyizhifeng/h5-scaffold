@@ -11,7 +11,7 @@ module.exports = {
       prefixUrl: `https://active${center}.wshareit.com/client/mvp-fiction`,
       showLog: true,
       headComments: `${env || "prod"} offline package version ${pkg.version} on ${date}`,
-      // blackList: ["https://web.likeitlite.com/task/index.html"],
+      // blackList: ["url"],
     },
   ],
 };
