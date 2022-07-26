@@ -4,12 +4,7 @@
   function setUnitA() {
     let w = docEl.getBoundingClientRect().width;
     let r = 20;
-    // const device = deviceInfo();
-    // if (device?.os_ver <= 19) {
-    //   win.rem = 36;
-    // } else {
     win.rem = w / r;
-    // }
     docEl.style.fontSize = win.rem + "px";
   }
   win.addEventListener(

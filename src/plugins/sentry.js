@@ -1,11 +1,11 @@
-import Vue from "vue";
 import * as Sentry from "@sentry/vue";
+import Vue from "vue";
 // import { Integrations } from "@sentry/tracing";
 import * as Integrations from "@sentry/tracing";
 
 const inAPP = window.client && window.shareitBridge;
 // Sentry
-if (process.env.NODE_ENV === "production") {
+if (process.env.VITE_NODE_ENV === "production") {
   Sentry.init({
     Vue,
     dsn: "",

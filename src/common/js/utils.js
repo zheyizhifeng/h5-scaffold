@@ -139,27 +139,8 @@ const openWithOutBrowser = (url) => {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
-};
-
-/**
- *
- * @param {*} url apk链接
- * @param {*} userMiddlePage 是否使用中间页下载
- */
-const upgredeAppWithUrl = (url, userMiddlePage = false) => {
-  if (!url) {
-    console.log("apk url is null!");
-  }
-
-  const isApkUrl = url.indexOf(".apk") > 0;
-  const jumpUrl =
-    userMiddlePage && isApkUrl
-      ? `${process.env.VUE_APP_SHARE2_RUL}/downloadapk/index.html?url=${encodeURIComponent(url)}`
-      : url;
-  console.log("jumpUrl :>> ", jumpUrl);
-  openWithOutBrowser(jumpUrl);
 };
 
 // 获取客户端所在的国家
@@ -184,7 +165,7 @@ export {
   debounce,
   throttle,
   getCloudConfig,
-  upgredeAppWithUrl,
+  openWithOutBrowser,
   getClientCountry,
   getWebviewLocale,
 };
