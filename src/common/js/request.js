@@ -1,10 +1,9 @@
 import axios from "axios";
 import getCommonParams from "./commonParams";
-const hash = window?.location?.hash;
-const isOld = hash?.indexOf("#/book") > -1;
-const { VITE_API_URL, VITE_CDN_URL, VITE_NODE_ENV } = import.meta.env;
+
+const { VITE_API_URL, VITE_NODE_ENV } = APP_ENV;
 const service = axios.create({
-  baseURL: VITE_NODE_ENV === "production" ? (isOld ? VITE_CDN_URL : VITE_API_URL) : "/api",
+  baseURL: VITE_NODE_ENV === "production" ? VITE_API_URL : "/api",
 });
 
 // request拦截器

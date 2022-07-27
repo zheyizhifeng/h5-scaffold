@@ -5,11 +5,10 @@ import path from "path";
 import pxtorem from "postcss-pxtorem";
 import { defineConfig, loadEnv } from "vite";
 import { viteExternalsPlugin } from "vite-plugin-externals";
-import { replaceCodePlugin } from "vite-plugin-replace";
+import { createHtmlPlugin } from "vite-plugin-html";
 import viteSentry from "vite-plugin-sentry";
 import pkg from "./package.json";
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
-
 export default defineConfig(({ command, mode }) => {
   // eg. command: 'serve', mode: 'development'
   const env = loadEnv(mode, process.cwd()); // 加载配置文件
@@ -50,20 +49,27 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),
+        "@views": path.resolve(__dirname, "src/views"),
+        "@components": path.resolve(__dirname, "src/components"),
+        "@images": path.resolve(__dirname, "src/assets/images"),
+        "@js": path.resolve(__dirname, "src/common/js"),
+        "@i18n": path.resolve(__dirname, "src/i18n"),
+        "@apis": path.resolve(__dirname, "src/apis"),
+        "@stores": path.resolve(__dirname, "src/stores"),
+        "@routers": path.resolve(__dirname, "src/routers"),
+        "@plugins": path.resolve(__dirname, "src/plugins"),
       },
     },
     base: "/",
     server: {
-      // host: true,
+      host: true,
       port: 8080,
       // open: true,
       proxy: {
         "/api": {
-          target: env.VITE_APP_API_URL,
+          target: env.VITE_API_URL,
           changeOrigin: true,
-          pathRewrite: {
-            "^/api": "/",
-          },
+          rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
     },
@@ -93,22 +99,24 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     define: {
-      // __APP_ENV__: env.APP_ENV,
+      APP_ENV: JSON.stringify(env),
+      REPLACE_LOG_PVE_CUR: JSON.stringify(pve_cur),
+      REPLACE_LOG_EXTRAS: JSON.stringify(extras),
     },
     plugins: [
       vue(),
       legacy(),
-      replaceCodePlugin({
-        replacements: [
-          {
-            from: /REPLACE_LOG_PVE_CUR/g,
-            to: pve_cur,
+      createHtmlPlugin({
+        minify: true,
+        entry: "src/main.js",
+        template: "index.html",
+        inject: {
+          data: {
+            title: "Shareit MVP Fiction",
+            REPLACE_LOG_PVE_CUR: pve_cur,
+            REPLACE_LOG_EXTRAS: extras,
           },
-          {
-            from: /REPLACE_LOG_EXTRAS/g,
-            to: extras,
-          },
-        ],
+        },
       }),
       viteExternalsPlugin({
         vue: "Vue",

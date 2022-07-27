@@ -9,7 +9,3 @@
 /demo
 /node_modules
 /public
-!.commitlintrc.js
-!.cz-config.js
-!.prettierrc.js
-!.stylelintrc.js

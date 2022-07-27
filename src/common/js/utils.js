@@ -1,6 +1,4 @@
-/**
- * 获取url参数
- */
+// 获取url参数
 const getUrlParam = (name) => {
   const match = location.hash.match(/#[^?]+(\?.+)/);
   const u = window.location.search || (match && match[1]) || "",
@@ -24,6 +22,8 @@ const getDateTime = (timeStamp) => {
   h = h < 12 ? h : h - 12;
   return y + "-" + m + "-" + d + " " + h + ":" + minute + " " + unit;
 };
+
+// 动态插入script
 const dynamicLoadJs = (url) => {
   return new Promise((resolve, reject) => {
     let script = document.createElement("script");
@@ -39,11 +39,12 @@ const dynamicLoadJs = (url) => {
   });
 };
 
+// 获取UUID
 const getUUID = () => {
   return +new Date() + Math.random().toString(16).replace(".", "");
 };
 
-/**
+/** 防抖函数
  * @param {Function} func
  * @param {number} wait
  * @param {boolean} immediate
@@ -126,7 +127,7 @@ const getCloudConfig = (cloudKey) => {
  * 外部浏览器打开链接
  * @param {*} url 网页链接
  */
-const openWithOutBrowser = (url) => {
+const openInBrowser = (url) => {
   try {
     window?.shareitBridge?.asyncInvoke(
       "likeitlite-task-upgrade",
@@ -165,7 +166,7 @@ export {
   debounce,
   throttle,
   getCloudConfig,
-  openWithOutBrowser,
+  openInBrowser,
   getClientCountry,
   getWebviewLocale,
 };

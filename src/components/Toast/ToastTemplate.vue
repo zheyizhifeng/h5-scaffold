@@ -61,28 +61,30 @@
 
 <style lang="scss" scoped>
   .my-toast {
-    box-sizing: border-box;
     position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
     bottom: 15%;
-    line-height: 32px;
+    left: 50%;
+    box-sizing: border-box;
+    width: 60%;
     font-size: 28px;
+    line-height: 32px;
+    color: #fff;
     text-align: center;
     transition: all 0.3s;
-    color: #fff;
-    width: 60%;
+    transform: translateX(-50%);
+
     span {
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 18px;
-      padding: 25px 30px;
-      max-width: 100%;
       display: inline-block;
+      max-width: 100%;
+      padding: 25px 30px;
+      background: rgb(0 0 0 / 80%);
+      border-radius: 18px;
     }
     // min-width: rem(100px);
     // max-width: rem(1000px);
     // word-break: keep-all;
   }
+
   .toast-fade-enter,
   .toast-fade-leave-active {
     opacity: 0;

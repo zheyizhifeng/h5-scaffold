@@ -70,7 +70,7 @@
     "vconsole": "^3.9.1",
     "vite": "^3.0.0",
     "vite-plugin-externals": "^0.5.1",
-    "vite-plugin-replace": "^0.1.1",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-sentry": "^1.1.2",
     "vue-pull-to": "^0.1.8"
   },

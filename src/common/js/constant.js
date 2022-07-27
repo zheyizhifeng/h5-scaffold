@@ -1,10 +1,4 @@
-export const ADD_BOOK_TO_SHELF = "0";
-export const REMOVE_BOOK_FROM_SHELF = "1";
-export const IS_BOOK_ON_SHELF = "2";
-export const ADD_READ_HISTROY = "3";
-
-export const VERTICAL_SCROLL = "VERTICAL_SCROLL";
-export const HORIZONTAL_COVER = "HORIZONTAL_COVER";
-export const HORIZONTAL_TRANSLATION = "HORIZONTAL_TRANSLATION";
-export const HORIZONTAL_SCROLL = "HORIZONTAL_SCROLL";
-export const HORIZONTAL_SIMULATE = "HORIZONTAL_SIMULATE";
+/**
+ * 常量文件
+ * export const DEMO = 'demo';
+ */

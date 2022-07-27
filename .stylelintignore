@@ -1,8 +1,10 @@
+/.husky
+/.vscode
+/.fest
 /node_modules
 /dist
 /test
 /demo
-/.fest
 /insert
 /offline
 /packed
