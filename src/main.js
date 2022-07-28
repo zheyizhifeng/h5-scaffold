@@ -1,7 +1,7 @@
 import "@js/rem";
 import { getUrlParam } from "@js/utils";
-import "@plugins/intersection.js"; // 曝光插件
-import "@plugins/sentry.js"; // sentry插件
+// import "@plugins/intersection.js"; // 曝光插件
+// import "@plugins/sentry.js"; // sentry插件
 import "@scss/common.scss";
 import "normalize.css/normalize.css";
 import { log } from "shareit-hybird-js-sdk";
