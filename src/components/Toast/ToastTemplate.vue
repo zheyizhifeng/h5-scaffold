@@ -64,7 +64,6 @@
     position: fixed;
     bottom: 15%;
     left: 50%;
-    box-sizing: border-box;
     width: 60%;
     font-size: 28px;
     line-height: 32px;
@@ -80,9 +79,6 @@
       background: rgb(0 0 0 / 80%);
       border-radius: 18px;
     }
-    // min-width: rem(100px);
-    // max-width: rem(1000px);
-    // word-break: keep-all;
   }
 
   .toast-fade-enter,

@@ -8,27 +8,31 @@ import { viteExternalsPlugin } from "vite-plugin-externals";
 import { createHtmlPlugin } from "vite-plugin-html";
 import viteSentry from "vite-plugin-sentry";
 import pkg from "./package.json";
+
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
+
 export default defineConfig(({ command, mode }) => {
   // eg. command: 'serve', mode: 'development'
-  const env = loadEnv(mode, process.cwd()); // 加载配置文件
+  const env = loadEnv(mode, process.cwd()); // 加载.env配置文件
+
   /**
-   * 添加离线包打点相关环境变量
+   * 离线包打点配置
    */
-  const pve_cur = "/shareit-mvp-fiction/0"; // !!!!!!!!!!!!修改离线包埋点事件名!!!!!!!!!!!!
+  const pve_cur = ""; // TODO: 离线包埋点pve_cur, eg: /shareit-mvp-fiction/0
   const pkgType = process.env.PACKAGE_TYPE || "online"; // 页面类型online/offline/insert
   const pkgVersion = pkg.packageVersion || pkg.version; // 版本号（package.json中packageVersion或version）
   const pkgDate = new Date().toLocaleDateString(); // 上线日期
   const extras = `${pkgType}_${pkgVersion}_${pkgDate}`; // 离线包埋点extras参数
+
   /*
-	Configure sentry plugin
+	sentry 配置
   */
   const sentryConfig = {
     url: "https://sentry.ushareit.org/",
     org: "shareit",
     project: "", // 项目名称
     authToken: "", // 项目token
-    release: "version_" + (pkg.packageVersion || pkg.version), //每次发布修改的，设置sentry的release版本
+    release: "version_" + pkgVersion, //每次发布修改的，设置sentry的release版本
     deploy: {
       env: env.VITE_ENVIRONMENT, // 环境变量
     },
@@ -42,6 +46,7 @@ export default defineConfig(({ command, mode }) => {
       urlPrefix: "~/",
     },
   };
+
   /**
    * 基础vite 配置
    */
@@ -53,6 +58,7 @@ export default defineConfig(({ command, mode }) => {
         "@components": path.resolve(__dirname, "src/components"),
         "@images": path.resolve(__dirname, "src/assets/images"),
         "@js": path.resolve(__dirname, "src/common/js"),
+        "@scss": path.resolve(__dirname, "src/common/scss"),
         "@i18n": path.resolve(__dirname, "src/i18n"),
         "@apis": path.resolve(__dirname, "src/apis"),
         "@stores": path.resolve(__dirname, "src/stores"),
@@ -74,7 +80,11 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     build: {
+      minify: true,
       sourcemap: uploadSentrySourceMap,
+    },
+    esbuild: {
+      drop: ["console", "debugger"],
     },
     css: {
       preprocessorOptions: {
@@ -99,7 +109,9 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     define: {
+      // 定义全局变量
       APP_ENV: JSON.stringify(env),
+      APP_VERSION: JSON.stringify(pkgVersion),
       REPLACE_LOG_PVE_CUR: JSON.stringify(pve_cur),
       REPLACE_LOG_EXTRAS: JSON.stringify(extras),
     },
@@ -109,10 +121,9 @@ export default defineConfig(({ command, mode }) => {
       createHtmlPlugin({
         minify: true,
         entry: "src/main.js",
-        template: "index.html",
         inject: {
           data: {
-            title: "Shareit MVP Fiction",
+            title: "", // TODO: 页面标题, eg: Shareit MVP Fiction
             REPLACE_LOG_PVE_CUR: pve_cur,
             REPLACE_LOG_EXTRAS: extras,
           },
@@ -126,9 +137,9 @@ export default defineConfig(({ command, mode }) => {
         "vue-router": "VueRouter",
         "vue-intersection-plugin-revision": "vueIntersectionPlugin",
         "vue-i18n": "VueI18n",
-        "lottie-web": "lottie",
-        // "@sentry/vue": "Sentry", //【Sentry】
-        // "@sentry/tracing": "Integrations", // 【Sentry】
+        // "lottie-web": "lottie",
+        "@sentry/vue": "Sentry", //【Sentry】
+        "@sentry/tracing": "Integrations", // 【Sentry】
       }),
     ],
   };

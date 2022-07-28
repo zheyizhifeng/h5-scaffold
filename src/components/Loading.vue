@@ -8,33 +8,19 @@
     </div>
   </div>
 </template>
-<script>
-  export default {
-    name: "MyLoading",
-  };
-</script>
 <style lang="scss" scoped>
   .loading-block {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    background: rgba($color: #fff, $alpha: 70%);
+    @include overlay(1000, #fff, 0.7);
 
     .lds-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      @include absolute-center();
+
       width: 40px;
       height: 40px;
-      transform: translate(-50%, -50%);
     }
 
     .lds-ring div {
       position: absolute;
-      box-sizing: border-box;
       display: block;
       width: 40px;
       height: 40px;

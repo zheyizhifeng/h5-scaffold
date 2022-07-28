@@ -1,4 +1,5 @@
-@mixin overlay($zindex, $opacity) {
+// 全屏遮罩
+@mixin overlay($zindex: 1, $color: #000, $alpha: 0.7) {
   position: fixed;
   top: 0;
   right: 0;
@@ -6,9 +7,10 @@
   left: 0;
   z-index: $zindex;
   overflow: hidden;
-  background: rgb(0 0 0 / $opacity);
+  background: rgba($color, $alpha);
 }
 
+// 绝对定位居中
 @mixin absolute-center {
   position: absolute;
   top: 50%;
@@ -16,10 +18,12 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin flex-center {
+// flex 布局
+@mixin flex($direction: row, $justify: center, $align: center) {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
 }
 
 // 单行文本溢出隐藏
@@ -30,7 +34,7 @@
 }
 
 // 多行文本溢出隐藏
-@mixin text-overflow-multi($line) {
+@mixin text-overflow-multi($line: 2) {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;

@@ -25,6 +25,7 @@ module.exports = {
   globals: {
     globalThis: "readonly",
     APP_ENV: "readonly",
+    APP_VERSION: "readonly",
     REPLACE_LOG_PVE_CUR: "readonly",
     REPLACE_LOG_EXTRAS: "readonly",
   },

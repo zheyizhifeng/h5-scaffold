@@ -118,7 +118,7 @@ const getCloudConfig = (cloudKey) => {
       return null;
     }
   } catch (err) {
-    console.log("getCloudConfig Err:", err);
+    console.error("getCloudConfig Err:", err);
     return null;
   }
 };
