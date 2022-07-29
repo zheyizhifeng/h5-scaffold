@@ -12,13 +12,11 @@ import pkg from "./package.json";
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
 
 export default defineConfig(({ command, mode }) => {
-  // eg. command: 'serve', mode: 'development'
-  const env = loadEnv(mode, process.cwd()); // 加载.env配置文件
-
+  const env = loadEnv(mode, process.cwd()); // 加载 .env[.*] 配置文件
+  console.log("env", env);
   /**
    * 离线包打点配置
    */
-  const pve_cur = ""; // TODO: 离线包埋点pve_cur, eg: /shareit-mvp-fiction/0
   const pkgType = process.env.PACKAGE_TYPE || "online"; // 页面类型online/offline/insert
   const pkgVersion = pkg.packageVersion || pkg.version; // 版本号（package.json中packageVersion或version）
   const pkgDate = new Date().toLocaleDateString(); // 上线日期
@@ -30,8 +28,8 @@ export default defineConfig(({ command, mode }) => {
   const sentryConfig = {
     url: "https://sentry.ushareit.org/",
     org: "shareit",
-    project: "", // 项目名称
-    authToken: "", // 项目token
+    project: "", // TODO: 项目名称
+    authToken: "", // TODO: 项目token
     release: "version_" + pkgVersion, //每次发布修改的，设置sentry的release版本
     deploy: {
       env: env.VITE_ENVIRONMENT, // 环境变量
@@ -70,7 +68,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: true,
       port: 8080,
-      // open: true,
+      open: true,
       proxy: {
         "/api": {
           target: env.VITE_API_URL,
@@ -112,7 +110,7 @@ export default defineConfig(({ command, mode }) => {
       // 定义全局变量
       APP_ENV: JSON.stringify(env),
       APP_VERSION: JSON.stringify(pkgVersion),
-      REPLACE_LOG_PVE_CUR: JSON.stringify(pve_cur),
+      REPLACE_LOG_PVE_CUR: JSON.stringify(env.VITE_PVE_CUR),
       REPLACE_LOG_EXTRAS: JSON.stringify(extras),
     },
     plugins: [
@@ -123,8 +121,8 @@ export default defineConfig(({ command, mode }) => {
         entry: "src/main.js",
         inject: {
           data: {
-            title: "", // TODO: 页面标题, eg: Shareit MVP Fiction
-            REPLACE_LOG_PVE_CUR: pve_cur,
+            title: env.VITE_TITLE,
+            REPLACE_LOG_PVE_CUR: env.VITE_PVE_CUR,
             REPLACE_LOG_EXTRAS: extras,
           },
         },
