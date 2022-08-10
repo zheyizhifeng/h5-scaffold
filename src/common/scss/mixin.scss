@@ -40,3 +40,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $line;
 }
+
+@mixin bgImage($url, $size: contain) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: $size;
+}
