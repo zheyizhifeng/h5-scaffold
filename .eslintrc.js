@@ -15,7 +15,12 @@ module.exports = {
     },
     sourceType: "module",
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "plugin:prettier/recommended", "eslint-config-prettier"],
+  extends: [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "eslint-config-prettier",
+  ],
   plugins: ["html"],
   rules: {
     "no-console": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
@@ -24,6 +29,7 @@ module.exports = {
   },
   globals: {
     globalThis: "readonly",
+    defineProps: "readonly",
     APP_ENV: "readonly",
     APP_VERSION: "readonly",
     REPLACE_LOG_PVE_CUR: "readonly",

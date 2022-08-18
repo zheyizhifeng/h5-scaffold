@@ -1,5 +1,5 @@
 import legacy from "@vitejs/plugin-legacy";
-import vue from "@vitejs/plugin-vue2";
+import vue from "@vitejs/plugin-vue";
 import autoprefixer from "autoprefixer";
 import path from "path";
 import pxtorem from "postcss-pxtorem";
@@ -13,7 +13,6 @@ const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】�
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd()); // 加载 .env[.*] 配置文件
-  console.log("env", env);
   /**
    * 离线包打点配置
    */
@@ -135,8 +134,6 @@ export default defineConfig(({ command, mode }) => {
         },
       }),
       viteExternalsPlugin({
-        vue: "Vue",
-        axios: "axios",
         "shareit-hybird-js-sdk": "Hybird",
         vuex: "Vuex",
         "vue-router": "VueRouter",
