@@ -64,7 +64,6 @@ export default defineConfig(({ command, mode }) => {
         "@plugins": path.resolve(__dirname, "src/plugins"),
       },
     },
-    base: "/",
     server: {
       host: true,
       port: 8080,
@@ -80,6 +79,14 @@ export default defineConfig(({ command, mode }) => {
     build: {
       minify: true,
       sourcemap: uploadSentrySourceMap,
+      manifest: true,
+      rollupOptions: {
+        output: {
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: "assets/js/[name]-[hash].js",
+          assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+        },
+      },
     },
     esbuild: {
       drop: ["console", "debugger"],
