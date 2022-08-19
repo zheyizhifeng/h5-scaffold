@@ -1,5 +1,5 @@
 {
-  "name": "shareit-vite-template",
+  "name": "shareit-vue-template",
   "private": true,
   "version": "0.1.1",
   "packageVersion": 1,
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.ushareit.me/chenlei/shareit-vite-template.git"
+    "url": "https://gitlab.ushareit.me/web-public/template/shareit-vue-template.git"
   },
   "scripts": {
     "dev": "vite",
@@ -64,7 +64,6 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-sentry": "^1.1.2",
     "vite": "npm:@shareit/vite@^3.0.9"
-
   },
   "husky": {
     "hooks": {
@@ -81,5 +80,8 @@
       "prettier --write",
       "stylelint --fix"
     ]
-  }
+  },
+  "description": "This template should help get you started developing with Vue 2 in Vite.",
+  "main": "src/main.js",
+  "license": "ISC"
 }
