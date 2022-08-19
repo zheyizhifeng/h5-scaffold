@@ -1,4 +1,1 @@
-/**
- * 常量文件
- * export const DEMO = 'demo';
- */
+export const HYBRID_PORTAL = ""; // todo:
