@@ -88,7 +88,7 @@
       "stylelint --fix"
     ]
   },
-  "description": "This template should help get you started developing with Vue 2 in Vite.",
+  "description": "This template should help get you started developing with Vue 3.x in Vite.",
   "main": "src/main.js",
   "license": "ISC"
 }
