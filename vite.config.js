@@ -135,10 +135,7 @@ export default defineConfig(({ command, mode }) => {
       }),
       viteExternalsPlugin({
         "shareit-hybird-js-sdk": "Hybird",
-        vuex: "Vuex",
-        "vue-router": "VueRouter",
         "vue-intersection-plugin-revision": "vueIntersectionPlugin",
-        "vue-i18n": "VueI18n",
         // "lottie-web": "lottie",
         "@sentry/vue": "Sentry", //【Sentry】
         "@sentry/tracing": "Integrations", // 【Sentry】

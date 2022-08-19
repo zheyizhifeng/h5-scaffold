@@ -1,7 +1,5 @@
 import Home from "@views/Home.vue";
-import Vue from "vue";
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
@@ -11,10 +9,7 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
-  mode: "hash",
-  base: APP_ENV.VITE_BASE_URL,
+export const router = createRouter({
+  history: createWebHashHistory(APP_ENV.VITE_BASE_URL),
   routes,
 });
-
-export default router;
