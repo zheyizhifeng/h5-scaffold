@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "types": ["node"],
+    "declaration": false,
+    "useDefineForClassFields": true,
+    "module": "ES2015",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "allowJs": false,
+    "checkJs": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@views/*": ["src/views/*"],
+      "@components/*": ["src/components/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@js/*": ["src/common/js/*"],
+      "@scss/*": ["src/common/scss/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@apis/*": ["src/apis/*"],
+      "@stores/*": ["src/stores/*"],
+      "@routers/*": ["src/routers/*"],
+      "@plugins/*": ["src/plugins/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist", "build", "test", "*.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

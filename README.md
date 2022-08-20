@@ -1,6 +1,6 @@
 # Vue 3.x + Vite
 
-This template should help get you started developing with Vue 3.x in Vite. 
+This template should help get you started developing with Vue 3.x & TypeScript in Vite. 
 
 # Node.JS Version Requirement
 

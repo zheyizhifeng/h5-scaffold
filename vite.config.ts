@@ -11,7 +11,7 @@ import pkg from "./package.json";
 
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command, mode }): any => {
   const env = loadEnv(mode, process.cwd()); // 加载 .env[.*] 配置文件
   /**
    * 离线包打点配置
@@ -124,7 +124,7 @@ export default defineConfig(({ command, mode }) => {
       legacy(),
       createHtmlPlugin({
         minify: true,
-        entry: "src/main.js",
+        entry: "src/main.ts",
         inject: {
           data: {
             title: env.VITE_TITLE,

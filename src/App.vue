@@ -2,7 +2,7 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script lang="ts">
   import { getCurrentInstance } from "vue";
   export default {
     setup() {

@@ -1,27 +1,24 @@
 module.exports = {
-  root: true,
   env: {
-    node: true,
     browser: true,
-    es6: true,
-    amd: true,
+    es2021: true,
+    node: true,
   },
   parserOptions: {
-    parser: "@babel/eslint-parser",
-    requireConfigFile: false,
-    ecmaVersion: 2018,
+    ecmaVersion: 13,
+    parser: "@typescript-eslint/parser",
+    sourceType: "module",
     ecmaFeatures: {
       jsx: true,
     },
-    sourceType: "module",
   },
   extends: [
-    "plugin:vue/vue3-recommended",
     "eslint:recommended",
+    "plugin:vue/vue3-recommended",
     "plugin:prettier/recommended",
     "eslint-config-prettier",
   ],
-  plugins: ["html"],
+  plugins: ["html", "@typescript-eslint"],
   rules: {
     "no-console": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
