@@ -1,3 +1,4 @@
+import "@js/rem";
 import Loading from "@components/Loading.vue";
 import { i18n } from "@i18n";
 import { HYBRID_PORTAL } from "@js/constant";
