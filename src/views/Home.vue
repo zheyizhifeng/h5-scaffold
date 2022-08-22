@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class="wrap">
+    <div class="logo-box">
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="logo" alt="Vite logo" />
       </a>
@@ -14,7 +14,6 @@
 
 <script>
   import HelloWorld from "./components/HelloWorld.vue";
-  import "./style.css";
   export default {
     components: {
       HelloWorld,
@@ -22,18 +21,24 @@
   };
 </script>
 
-<style scoped>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
+<style scoped lang="scss">
+  .wrap {
+    text-align: center;
 
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
+    .logo-box {
+      .logo {
+        height: 200px;
+        padding: 40px;
+        will-change: filter;
+      }
 
-  .logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
+      .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+      }
+
+      .logo.vue:hover {
+        filter: drop-shadow(0 0 2em #42b883aa);
+      }
+    }
   }
 </style>
