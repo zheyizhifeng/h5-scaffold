@@ -1,10 +1,10 @@
 "use strict";
 (function (win) {
   let h;
-  let docEl = document.documentElement;
+  const docEl = document.documentElement;
   function setUnitA() {
-    let w = docEl.getBoundingClientRect().width;
-    let r = 20;
+    const w = docEl.getBoundingClientRect().width;
+    const r = 20;
     win.rem = w / r;
     docEl.style.fontSize = win.rem + "px";
   }

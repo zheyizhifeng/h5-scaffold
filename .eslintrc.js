@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    ecmaVersion: 13,
+    ecmaVersion: 2020,
     parser: "@typescript-eslint/parser",
     sourceType: "module",
     ecmaFeatures: {
@@ -26,6 +26,7 @@ module.exports = {
   },
   globals: {
     globalThis: "readonly",
+    defineEmits: "readonly",
     defineProps: "readonly",
     APP_ENV: "readonly",
     APP_VERSION: "readonly",

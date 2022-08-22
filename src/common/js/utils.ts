@@ -17,14 +17,14 @@ const getDateTime = (timeStamp) => {
   m = m < 10 ? "0" + m : m;
   d = d < 10 ? "0" + d : d;
   minute = minute < 10 ? "0" + minute : minute;
-  let unit = h < 12 ? "AM" : "PM";
+  const unit = h < 12 ? "AM" : "PM";
   h = h < 12 ? h : h - 12;
   return y + "-" + m + "-" + d + " " + h + ":" + minute + " " + unit;
 };
 // 动态插入script
 const dynamicLoadJs = (url) => {
   return new Promise((resolve, reject) => {
-    let script = document.createElement("script");
+    const script = document.createElement("script");
     script.type = "text/javascript";
     script.onload = () => {
       resolve();
@@ -80,7 +80,7 @@ function debounce(func, wait, immediate) {
 const throttle = function (fun, time = 100) {
   let base = 0;
   return function (...args) {
-    let now = +new Date();
+    const now = +new Date();
     if (now - base > time) {
       base = now;
       fun.apply(this, args);
@@ -93,7 +93,7 @@ const throttle = function (fun, time = 100) {
  * @returns
  */
 const getCloudConfig = (cloudKey) => {
-  var _a;
+  let _a;
   try {
     const configDataJson =
       (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
@@ -121,7 +121,7 @@ const getCloudConfig = (cloudKey) => {
  * @param {*} url 网页链接
  */
 const openInBrowser = (url) => {
-  var _a;
+  let _a;
   try {
     (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
       ? void 0
@@ -141,7 +141,7 @@ const openInBrowser = (url) => {
 };
 // 获取客户端所在的国家
 function getClientCountry() {
-  var _a;
+  let _a;
   const locationString =
     (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
       ? void 0

@@ -1,12 +1,14 @@
 <template>
-  <router-view></router-view>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
-<script lang="ts">
+<!-- <script lang="ts">
   import { getCurrentInstance } from "vue";
   export default {
     setup() {
-      const { proxy } = getCurrentInstance();
+      const { proxy } = getCurrentInstance() as any;
       proxy.$log({
         params: {
           eventId: "show_ve",
@@ -17,4 +19,4 @@
       });
     },
   };
-</script>
+</script> -->

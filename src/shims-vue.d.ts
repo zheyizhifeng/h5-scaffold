@@ -12,16 +12,9 @@ declare module "vue/types/vue" {
   }
 }
 
-// declare module "shareit-hybird-js-sdk" {
-//   const content: any
-//   export default content;
-// };
-
-// declare const APP_ENV: {
-//   VITE_BASE_URL: string;
-// };
-
-declare module "*.json" {
-  const value: any;
-  export default value;
+declare global {
+  declare const REPLACE_LOG_PVE_CUR;
+  declare const REPLACE_LOG_EXTRAS;
+  declare const APP_ENV;
+  interface Window {}
 }

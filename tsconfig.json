@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "types": ["node"],
-    "declaration": false,
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "module": "ES2015",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
@@ -15,7 +13,7 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "baseUrl": "./",
-    "allowJs": false,
+    "allowJs": true,
     "checkJs": false,
     "paths": {
       "@/*": ["src/*"],
@@ -29,7 +27,7 @@
       "@stores/*": ["src/stores/*"],
       "@routers/*": ["src/routers/*"],
       "@plugins/*": ["src/plugins/*"],
-    }
+    },
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "dist", "build", "test", "*.d.ts"],

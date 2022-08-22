@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import autoprefixer from "autoprefixer";
 import path from "path";
 import pxtorem from "postcss-pxtorem";
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, UserConfig } from "vite";
 import { viteExternalsPlugin } from "vite-plugin-externals";
 import { createHtmlPlugin } from "vite-plugin-html";
 import viteSentry from "vite-plugin-sentry";
@@ -11,7 +11,7 @@ import pkg from "./package.json";
 
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
 
-export default defineConfig(({ command, mode }): any => {
+export default defineConfig(({ mode }: { mode: string }): UserConfig => {
   const env = loadEnv(mode, process.cwd()); // 加载 .env[.*] 配置文件
   /**
    * 离线包打点配置
@@ -145,16 +145,5 @@ export default defineConfig(({ command, mode }): any => {
   if (uploadSentrySourceMap) {
     commonConfig.plugins.push(viteSentry(sentryConfig));
   }
-  if (command === "serve") {
-    return {
-      ...commonConfig,
-      // dev 独有配置
-    };
-  } else {
-    // command === 'build'
-    return {
-      ...commonConfig,
-      // build 独有配置
-    };
-  }
+  return commonConfig;
 });
