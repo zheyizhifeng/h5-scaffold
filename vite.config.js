@@ -13,7 +13,6 @@ const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】�
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd()); // 加载 .env[.*] 配置文件
-  console.log("env", env);
   /**
    * 离线包打点配置
    */

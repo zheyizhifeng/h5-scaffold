@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="text">Hello Vue2 + Vite</div>
-    <img class="vite-logo" src="https://cn.vitejs.dev/logo-with-shadow.png" alt="" srcset="" />
+    <img class="vue-logo" src="../assets/images/Vue.png" alt="" />
   </div>
 </template>
 
