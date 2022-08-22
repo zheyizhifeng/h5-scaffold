@@ -26,6 +26,7 @@ module.exports = {
   },
   globals: {
     globalThis: "readonly",
+    NodeJS: "readonly",
     defineEmits: "readonly",
     defineProps: "readonly",
     APP_ENV: "readonly",

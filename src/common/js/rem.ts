@@ -1,6 +1,6 @@
 "use strict";
 (function (win) {
-  let h;
+  let h: string | number | NodeJS.Timeout | undefined;
   const docEl = document.documentElement;
   function setUnitA() {
     const w = docEl.getBoundingClientRect().width;

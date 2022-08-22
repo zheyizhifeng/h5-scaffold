@@ -145,5 +145,5 @@ export default defineConfig(({ mode }: { mode: string }): UserConfig => {
   if (uploadSentrySourceMap) {
     commonConfig.plugins.push(viteSentry(sentryConfig));
   }
-  return commonConfig;
+  return commonConfig as any;
 });

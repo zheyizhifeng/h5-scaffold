@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<!-- <script lang="ts">
+<script lang="ts">
   import { getCurrentInstance } from "vue";
   export default {
     setup() {
@@ -19,4 +19,4 @@
       });
     },
   };
-</script> -->
+</script>
