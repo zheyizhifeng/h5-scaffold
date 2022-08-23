@@ -1,4 +1,3 @@
-"use strict";
 (function (win) {
   let h: string | number | NodeJS.Timeout | undefined;
   const docEl = document.documentElement;
