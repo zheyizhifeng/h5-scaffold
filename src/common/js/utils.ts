@@ -50,8 +50,8 @@ const getUUID = () => {
  * @param {boolean} immediate
  * @return {*}
  */
-function debounce(func: Function, wait: number, immediate: any) {
-  let timeout: NodeJS.Timeout | null, args: any[] | null, context: null, timestamp: number, result: any;
+function debounce(func: Function, wait: number, immediate: boolean) {
+  let timeout: NodeJS.Timeout | null, args: any[] | null, context: any, timestamp: number, result: any;
   const later = function () {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp;
@@ -67,7 +67,7 @@ function debounce(func: Function, wait: number, immediate: any) {
       }
     }
   };
-  return (...args: any[]) => {
+  return function (this: any, ...args: any) {
     context = this;
     timestamp = +new Date();
     const callNow = immediate && !timeout;
@@ -80,8 +80,9 @@ function debounce(func: Function, wait: number, immediate: any) {
     return result;
   };
 }
+
 // 节流函数 每隔time执行一次函数
-const throttle = function (fun: Function, time = 100) {
+const throttle = function (this: any, fun: Function, time = 100) {
   let base = 0;
   return (...args: any) => {
     const now = +new Date();

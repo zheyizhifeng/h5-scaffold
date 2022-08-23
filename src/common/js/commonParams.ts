@@ -9,7 +9,7 @@ const getCommonParams = () => {
     "ID";
   // 获取trace_id
   const trace_id = getUUID();
-  let commonParams = {};
+  let commonParams: any = {};
   // sign参数中添加country
   const requestParamsData = requestParams({
     params: {
