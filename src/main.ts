@@ -11,11 +11,9 @@ import { log } from "shareit-hybird-js-sdk";
 import { createApp } from "vue";
 import App from "./App.vue";
 
-const app = createApp(App as any)
-  .use(store)
-  .use(router)
-  .use(i18n);
-app.component("Loading", Loading as any);
+const app = createApp(App).use(store).use(router).use(i18n);
+
+app.component("Loading", Loading);
 
 app.config.globalProperties.$portal = getUrlParam("portal");
 app.config.globalProperties.$hybridPortal = HYBRID_PORTAL;

@@ -28,3 +28,4 @@
   );
   setUnitA();
 })(window);
+export default {};
