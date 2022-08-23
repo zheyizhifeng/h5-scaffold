@@ -4,8 +4,8 @@ include:
     file: "/templates/11.8/H5-normal.yml"
 variables:
   DEPLOY_DIR: "./dist" # 需要部署的目录
-  AWS_DEFAULT_REGION:  # TODO: 桶所在区域, eg: ap-southeast-1
-  BUCKET_NAME:  # TODO: 桶名, eg: web.h5.ap-southeast-1
+  AWS_DEFAULT_REGION: "" # TODO: 桶所在区域, eg: ap-southeast-1
+  BUCKET_NAME: "" # TODO: 桶名, eg: web.h5.ap-southeast-1
   S3_PATH_PROD: "" # TODO: S3路径正式环境  eg: active.wshareit.com/prod/client/mvp-fiction
   S3_PATH_TEST: "" # TODO: S3路径测试环境  eg: active.wshareit.com/test/client/mvp-fiction
   S3_PATH_PRE: "" # TODO: S3路径预发布环境 eg: active.wshareit.com/pre/client/mvp-fiction
