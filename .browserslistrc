@@ -1,4 +1,10 @@
 > 1%
 last 2 versions
 not dead
-android >= 4.4
+Android >= 4.4
+not ie > 0
+not ios_saf > 0
+not edge > 0
+not safari > 0
+not kaios > 0
+not baidu > 0

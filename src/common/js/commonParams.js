@@ -1,10 +1,15 @@
-import { loginInfo, requestParams } from "shareit-hybird-js-sdk";
+import {
+  requestParams,
+  // loginInfo,
+  locationInfo,
+} from "shareit-hybird-js-sdk";
 import { getUUID } from "./utils";
-
+const activityCode = "shareit_daily_";
 const getCommonParams = () => {
-  // 获取国家（默认印尼）
-  const loginData = loginInfo();
-  const country = loginData?.user_country || loginData?.countryCode || "ID";
+  // 获取国家 LBS > 系统国家
+  // const loginData = loginInfo();
+  const location = locationInfo() || {};
+  const country = location.lCountryCode || location.sCountryCode || "";
   // 获取trace_id
   const trace_id = getUUID();
 
@@ -16,12 +21,17 @@ const getCommonParams = () => {
     },
   });
   if (requestParamsData && requestParamsData.responseCode === "0") {
-    const data = JSON.parse(requestParamsData.requestParams);
-    commonParams = data;
+    try {
+      const data = JSON.parse(requestParamsData.requestParams);
+      commonParams = data;
+    } catch (e) {
+      console.log("e :>> ", e);
+    }
   }
 
   commonParams.country = country;
   commonParams.trace_id = trace_id;
+  commonParams.activity_code = activityCode + country; //临时活动码
   return commonParams;
 };
 

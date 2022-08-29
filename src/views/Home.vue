@@ -1,44 +1,76 @@
 <template>
-  <div class="wrap">
-    <div class="logo-box">
-      <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="@images/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
+  <div class="home-container">
+    <h1>This is Home Page</h1>
+    <div class="test" @click="loading = !loading">展示loading</div>
+    <div class="pop" @click="changeLanguage"></div>
+    <h2>测试拦截器</h2>
+    <div>
+      <div>{{ $t("common.noNetworkTip") }}</div>
+      <div @click="testfun1">click1</div>
+      <div @click="testfun2">click2</div>
     </div>
-    <HelloWorld msg="Vite + Vue" />
+    <transition name="fade">
+      <Loading v-show="loading" loadingStyle="type1"></Loading>
+    </transition>
   </div>
 </template>
 
 <script>
-  import HelloWorld from "./components/HelloWorld.vue";
-  export default {
-    components: {
-      HelloWorld,
+import { GetApi, PostApi } from "@/api/index";
+export default {
+  name: "Home",
+  data() {
+    return {
+      loading: false,
+    };
+  },
+  methods: {
+    testfun1() {
+      const params = {
+        name: "testname",
+        age: 11,
+      };
+      GetApi(params, { hideNetCheck: true })
+        .then((res) => {
+          console.log("get res :>> ", res);
+        })
+        .catch((err) => {
+          console.log("geterr", err);
+        });
     },
-  };
+    testfun2() {
+      const params = {
+        name: "testname",
+        age: 11,
+      };
+      PostApi(params, { hideNetCheck: false })
+        .then((res) => {
+          console.log("post res :>> ", res);
+        })
+        .catch((err) => {
+          console.log("posterr", err);
+        });
+    },
+    changeLanguage() {
+      console.log(this.$i18n.local);
+      this.$root.$i18n.locale = "en";
+    },
+  },
+};
 </script>
 
-<style scoped lang="scss">
-  .wrap {
-    text-align: center;
-
-    .logo-box {
-      .logo {
-        height: 200px;
-        padding: 40px;
-        will-change: filter;
-      }
-
-      .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-      }
-
-      .logo.vue:hover {
-        filter: drop-shadow(0 0 2em #42b883aa);
-      }
-    }
+<style lang="scss" scoped>
+.home-container {
+  .test {
+    width: 700px;
+    height: 50px;
+    background: pink;
   }
+  .pop {
+    // @include popup(999, red);
+    @include wh(300px, 300px);
+    background: hotpink;
+    transform: scale(0.7);
+  }
+}
 </style>

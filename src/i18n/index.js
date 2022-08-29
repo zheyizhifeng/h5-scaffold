@@ -1,20 +1,40 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
-import { getClientCountry } from "../common/js/utils";
-import EN from "./lang/EN.js";
-import ID from "./lang/ID.js";
-import MX from "./lang/MX.js";
-import PH from "./lang/PH.js";
+import en from "./lang/en.js";
 Vue.use(VueI18n);
 const i18n = new VueI18n({
-  locale: getClientCountry(),
-  fallbackLocale: "EN",
+  locale: "en",
+  fallbackLocale: "en",
   messages: {
-    EN: EN,
-    ID: ID,
-    MX: MX,
-    PH: PH,
+    en: en,
   },
 });
+
+const loadedLanguages = ["en"];
+const supportLanguages = ["en"];
+const supportCountrys = ["US"];
+
+Vue.prototype.$supportCountrys = supportCountrys;
+i18n.supportCountrys = supportCountrys;
+
+i18n.loadLanguageAsync = (lang) => {
+  if (!lang || lang === i18n.locale || !supportLanguages.includes(lang)) {
+    return;
+  }
+
+  if (loadedLanguages.includes(lang)) {
+    i18n.locale = lang;
+  } else {
+    import(/* webpackChunkName: "lang-[request]" */ `./lang/${lang}`).then(
+      (msgs) => {
+        // console.log("lang :>> ", lang);
+        // console.log("msgs :>> ", msgs);
+        i18n.setLocaleMessage(lang, msgs.default);
+        loadedLanguages.push(lang);
+        i18n.locale = lang;
+      }
+    );
+  }
+};
 
 export default i18n;

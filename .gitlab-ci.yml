@@ -1,13 +1,16 @@
+# Configuration for H5 project used by Continuous Delivery and Continuous Deployment.
+# Gitlab runner will triggered by three situation：develop branch、preview branch、tag in a master branch
+# gitlab 11.8
 include:
-  - project: "web/template/ci_cd_template"
-    ref: master
-    file: "/templates/11.8/H5-normal.yml"
+    - project: "web/template/ci_cd_template"
+      ref: master
+      file: "/templates/11.8/H5-normal.yml"
 variables:
-  DEPLOY_DIR: "./dist" # 需要部署的目录
-  AWS_DEFAULT_REGION: "" # TODO: 桶所在区域, eg: ap-southeast-1
-  BUCKET_NAME: "" # TODO: 桶名, eg: web.h5.ap-southeast-1
-  S3_PATH_PROD: "" # TODO: S3路径正式环境  eg: active.wshareit.com/prod/client/mvp-fiction
-  S3_PATH_TEST: "" # TODO: S3路径测试环境  eg: active.wshareit.com/test/client/mvp-fiction
-  S3_PATH_PRE: "" # TODO: S3路径预发布环境 eg: active.wshareit.com/pre/client/mvp-fiction
-  DISTRIBUTION_ID: "" # TODO: cloudfront CDN的域名 eg: E3T0IXFX8VIEV3
-  DISTRIBUTION_PATH: "" # TODO: cloudfront 刷新缓存的路径 eg: /client/mvp-fiction/*
+    DEPLOY_DIR: "./dist" # 需要部署的目录
+    AWS_DEFAULT_REGION: ap-southeast-1 # 桶所在区域
+    BUCKET_NAME: web.h5.ap-southeast-1 # 桶名
+    S3_PATH_PROD: "active.wshareit.com/prod/xxxx" # TODO: 需要替换-S3路径正式环境
+    S3_PATH_TEST: "active.wshareit.com/test/xxxx" # TODO: 需要替换-S3路径测试环境
+    S3_PATH_PRE: "active.wshareit.com/pre/xxxx" # TODO: 需要替换-S3路径测试环境
+    DISTRIBUTION_ID: "E3NBKUW0BY1VR" # cloudfront cdn的域名
+    DISTRIBUTION_PATH: "/xxxx/*" # cloudfront TODO: 需要替换-刷新缓存的路径

@@ -1,87 +1,60 @@
 {
-  "name": "shareit-vue-template",
+  "name": "active-template",
+  "version": "0.1.0",
+  "packageVersion": "1",
   "private": true,
-  "version": "0.1.1",
-  "packageVersion": 1,
-  "keywords": [
-    "eslint",
-    "stylelint",
-    "commitlint",
-    "prettier",
-    "vite",
-    "vue2"
-  ],
-  "author": {
-    "name": "lucida",
-    "email": "chenlei@ushareit.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.ushareit.me/web-public/template/shareit-vue-template.git"
-  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:test": "vite build --mode test",
-    "build:pre": "vite build --mode pre",
-    "preview": "vite preview",
-    "build:insert": "PACKAGE_TYPE=insert vite build",
-    "build-offline": "PACKAGE_TYPE=offline vite build",
-    "build-offline:test": "PACKAGE_TYPE=offline vite build --mode test",
-    "build-offline:pre": "PACKAGE_TYPE=offline vite build --mode pre",
+    "serve": "vue-cli-service serve",
+    "build:test": "vue-cli-service build --mode test",
+    "build:pre": "vue-cli-service build --mode pre",
+    "build": "vue-cli-service build",
+    "build:insert": "cross-env PACKAGE_TYPE=insert vue-cli-service build --dest ./insert",
+		"build:offline": "cross-env PACKAGE_TYPE=offline vue-cli-service build --dest ./offline",
     "offlineZip": "fest pack build -c",
-    "offlineZip:test": "ENV=test fest pack build -c",
-    "offlineZip:pre": "ENV=pre fest pack build -c",
-    "sentry": "USE_SENTRY=true vite build",
-    "prepare": "husky install"
+    "sentry": "cross-env USE_SENTRY=true vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "report": "vue-cli-service build --report",
+    "browserslist": "npx browserslist"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "core-js": "^3.6.5",
+    "normalize.css": "^8.0.1",
+    "register-service-worker": "^1.7.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
-    "@vitejs/plugin-legacy": "^2.0.1",
-    "@vitejs/plugin-vue2": "^1.1.2",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.1.1",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
-    "normalize.css": "^8.0.1",
-    "postcss-html": "^1.3.0",
-    "postcss-pxtorem": "^6.0.0",
-    "postcss-scss": "^4.0.2",
-    "prettier": "^2.5.0",
-    "sass": "^1.54.0",
-    "stylelint": "^14.1.0",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-recess-order": "^3.0.0",
-    "stylelint-config-standard": "^24.0.0",
-    "stylelint-prettier": "^2.0.0",
-    "vite": "^3.0.9",
-    "vite-plugin-externals": "^0.5.1",
-    "vite-plugin-html": "^3.2.0",
-    "vite-plugin-sentry": "^1.1.2"
+    "@shareit/replace-string-webpack-plugin": "^1.0.2",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "postcss": "^8.3.6",
+    "postcss-pxtorem": "^5.1.1",
+    "prettier": "^2.2.1",
+    "sass": "^1.43.4",
+    "sass-loader": "^8.0.2",
+    "vconsole": "^3.9.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-spritesmith": "^1.1.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-    }
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "**/*.{vue,html,js,mjs,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "**/*.{css,scss,html,vue}": [
-      "prettier --write",
-      "stylelint --fix"
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
     ]
-  },
-  "description": "This template should help get you started developing with Vue 2 in Vite.",
-  "main": "src/main.js",
-  "license": "ISC"
+  }
 }

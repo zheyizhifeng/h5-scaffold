@@ -1,7 +1,8 @@
-// 获取url参数
+/**
+ * 获取url参数
+ */
 const getUrlParam = (name) => {
-  const match = location.hash.match(/#[^?]+(\?.+)/);
-  const u = window.location.search || (match && match[1]) || "",
+  const u = window.location.search,
     reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
     r = u.substr(u.indexOf("?") + 1).match(reg);
   return r != null ? r[2] : "";
@@ -22,8 +23,6 @@ const getDateTime = (timeStamp) => {
   h = h < 12 ? h : h - 12;
   return y + "-" + m + "-" + d + " " + h + ":" + minute + " " + unit;
 };
-
-// 动态插入script
 const dynamicLoadJs = (url) => {
   return new Promise((resolve, reject) => {
     let script = document.createElement("script");
@@ -39,12 +38,11 @@ const dynamicLoadJs = (url) => {
   });
 };
 
-// 获取UUID
 const getUUID = () => {
   return +new Date() + Math.random().toString(16).replace(".", "");
 };
 
-/** 防抖函数
+/**
  * @param {Function} func
  * @param {number} wait
  * @param {boolean} immediate
@@ -104,21 +102,21 @@ const throttle = function (fun, time = 100) {
  */
 const getCloudConfig = (cloudKey) => {
   try {
-    const configDataJson = window?.shareitBridge?.syncInvoke(
+    const configDataJson = window.shareitBridge.syncInvoke(
       "web-likeitlite",
       "getCloudConfig",
       JSON.stringify({
         cloudKey: cloudKey,
       })
     );
-    const res = JSON.parse(configDataJson || "{}");
+    const res = JSON.parse(configDataJson);
     if (res && res.responseCode === "0") {
       return res.value;
     } else {
       return null;
     }
   } catch (err) {
-    console.error("getCloudConfig Err:", err);
+    console.log("getCloudConfig Err:", err);
     return null;
   }
 };
@@ -127,9 +125,9 @@ const getCloudConfig = (cloudKey) => {
  * 外部浏览器打开链接
  * @param {*} url 网页链接
  */
-const openInBrowser = (url) => {
+const openWithOutBrowser = (url) => {
   try {
-    window?.shareitBridge?.asyncInvoke(
+    window.shareitBridge.asyncInvoke(
       "likeitlite-task-upgrade",
       "executeAppEvent",
       "",
@@ -140,23 +138,30 @@ const openInBrowser = (url) => {
       })
     );
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
-// 获取客户端所在的国家
-function getClientCountry() {
-  const locationString = window?.shareitBridge?.syncInvoke("PayPhoneFare", "getLocationInfo", "");
-  const info = JSON.parse(locationString || "{}");
-  return info?.lCountryCode || "";
-}
+/**
+ *
+ * @param {*} url apk链接
+ * @param {*} userMiddlePage 是否使用中间页下载
+ */
+const upgredeAppWithUrl = (url, userMiddlePage = false) => {
+  if (!url) {
+    console.log("apk url is null!");
+  }
 
-// 获取浏览器或Webview的语言
-function getWebviewLocale() {
-  const language =
-    navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
-  return language?.toLowerCase() || "";
-}
+  const isApkUrl = url.indexOf(".apk") > 0;
+  const jumpUrl =
+    userMiddlePage && isApkUrl
+      ? `${
+          process.env.VUE_APP_SHARE2_RUL
+        }/downloadapk/index.html?url=${encodeURIComponent(url)}`
+      : url;
+  console.log("jumpUrl :>> ", jumpUrl);
+  openWithOutBrowser(jumpUrl);
+};
 
 export {
   getUrlParam,
@@ -166,7 +171,5 @@ export {
   debounce,
   throttle,
   getCloudConfig,
-  openInBrowser,
-  getClientCountry,
-  getWebviewLocale,
+  upgredeAppWithUrl,
 };
