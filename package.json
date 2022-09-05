@@ -33,7 +33,8 @@
     "offlineZip:test": "ENV=test fest pack build -c",
     "offlineZip:pre": "ENV=pre fest pack build -c",
     "sentry": "USE_SENTRY=true vite build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git add . && cz-customizable"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
@@ -42,6 +43,9 @@
     "@vitejs/plugin-legacy": "^2.0.1",
     "@vitejs/plugin-vue2": "^1.1.2",
     "autoprefixer": "^10.4.7",
+    "commitlint-config-cz": "^0.13.3",
+    "commitlint-config-git-commit-emoji": "^1.0.0",
+    "cz-customizable": "^7.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-html": "^6.2.0",
