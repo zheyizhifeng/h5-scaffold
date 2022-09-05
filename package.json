@@ -50,6 +50,9 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-customizable": "^7.0.0",
+    "cz-relax": "^0.2.1",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-html": "^6.2.0",
@@ -96,5 +99,10 @@
   },
   "description": "This template should help get you started developing with Vue 3.x in Vite.",
   "main": "src/main.js",
-  "license": "ISC"
+  "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  }
 }
