@@ -43,7 +43,7 @@ module.exports = {
       confirmCommit: "是否提交或修改commit ?",
     },
     types: commitTypes,
-    useEmoji: false,
+    useEmoji: true,
     scopes: [],
     allowCustomScopes: true,
     allowEmptyScopes: true,
