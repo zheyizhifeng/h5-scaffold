@@ -8,8 +8,7 @@
     "stylelint",
     "commitlint",
     "prettier",
-    "vite",
-    "vue2"
+    "react"
   ],
   "author": {
     "name": "lucida",
@@ -19,34 +18,55 @@
     "type": "git",
     "url": "https://gitlab.ushareit.me/web-public/template/shareit-vue-template.git"
   },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:test": "vite build --mode test",
-    "build:pre": "vite build --mode pre",
-    "preview": "vite preview",
-    "build:insert": "PACKAGE_TYPE=insert vite build",
-    "build-offline": "PACKAGE_TYPE=offline vite build",
-    "build-offline:test": "PACKAGE_TYPE=offline vite build --mode test",
-    "build-offline:pre": "PACKAGE_TYPE=offline vite build --mode pre",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "build:insert": "PACKAGE_TYPE=insert npm run build",
+    "build-offline": "PACKAGE_TYPE=offline npm run build",
+    "build-offline:test": "PACKAGE_TYPE=offline npm run build --mode test",
+    "build-offline:pre": "PACKAGE_TYPE=offline npm run build --mode pre",
     "offlineZip": "fest pack build -c",
     "offlineZip:test": "ENV=test fest pack build -c",
     "offlineZip:pre": "ENV=pre fest pack build -c",
-    "sentry": "USE_SENTRY=true vite build",
+    "sentry": "USE_SENTRY=true npm run build",
     "prepare": "husky install"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
-    "@vitejs/plugin-legacy": "^2.0.1",
-    "@vitejs/plugin-vue2": "^1.1.2",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@craco/craco": "^6.4.5",
+    "@shareit/shareit-hybird-js-sdk": "^1.4.5",
     "autoprefixer": "^10.4.7",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-customizable": "^7.0.0",
+    "cz-relax": "^0.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.1.1",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "normalize.css": "^8.0.1",
@@ -59,11 +79,7 @@
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-standard": "^24.0.0",
-    "stylelint-prettier": "^2.0.0",
-    "vite": "^3.0.9",
-    "vite-plugin-externals": "^0.5.1",
-    "vite-plugin-html": "^3.2.0",
-    "vite-plugin-sentry": "^1.1.2"
+    "stylelint-prettier": "^2.0.0"
   },
   "husky": {
     "hooks": {
@@ -72,16 +88,21 @@
     }
   },
   "lint-staged": {
-    "**/*.{vue,html,js,mjs,jsx,ts,tsx}": [
+    "**/*.{html,js,mjs,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "**/*.{css,scss,html,vue}": [
+    "**/*.{css,scss,html}": [
       "prettier --write",
       "stylelint --fix"
     ]
   },
-  "description": "This template should help get you started developing with Vue 2 in Vite.",
-  "main": "src/main.js",
-  "license": "ISC"
+  "description": "This template should help get you started developing with React",
+  "main": "src/index.js",
+  "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  }
 }

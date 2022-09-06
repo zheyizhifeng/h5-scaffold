@@ -1,19 +1,13 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
   "eslint.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "vetur.format.enable": false,
-  "vetur.validation.template": false,
-  "vetur.validation.interpolation": false,
-  "vetur.validation.style": false,
-  "vetur.languageFeatures.codeActions": false,
-  "vetur.validation.script": false,
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "scss", "vue", "html"],
+  "stylelint.validate": ["css", "scss", "html"],
 }

@@ -1,10 +1,10 @@
 // 获取url参数
 const getUrlParam = (name) => {
-  const match = location.hash.match(/#[^?]+(\?.+)/);
-  const u = window.location.search || (match && match[1]) || "",
-    reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
-    r = u.substr(u.indexOf("?") + 1).match(reg);
-  return r != null ? r[2] : "";
+  const match = window.location.hash.match(/#[^?]+(\?.+)/);
+  const u = window.location.search || (match && match[1]) || '',
+    reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'),
+    r = u.substr(u.indexOf('?') + 1).match(reg);
+  return r != null ? r[2] : '';
 };
 
 // 13位时间戳格式转化为 yyyy/m/dd h:m Am
@@ -15,19 +15,19 @@ const getDateTime = (timeStamp) => {
     m = date.getMonth() + 1,
     d = date.getDate(),
     h = date.getHours();
-  m = m < 10 ? "0" + m : m;
-  d = d < 10 ? "0" + d : d;
-  minute = minute < 10 ? "0" + minute : minute;
-  let unit = h < 12 ? "AM" : "PM";
+  m = m < 10 ? '0' + m : m;
+  d = d < 10 ? '0' + d : d;
+  minute = minute < 10 ? '0' + minute : minute;
+  let unit = h < 12 ? 'AM' : 'PM';
   h = h < 12 ? h : h - 12;
-  return y + "-" + m + "-" + d + " " + h + ":" + minute + " " + unit;
+  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ' ' + unit;
 };
 
 // 动态插入script
 const dynamicLoadJs = (url) => {
   return new Promise((resolve, reject) => {
-    let script = document.createElement("script");
-    script.type = "text/javascript";
+    let script = document.createElement('script');
+    script.type = 'text/javascript';
     script.onload = () => {
       resolve();
     };
@@ -41,7 +41,7 @@ const dynamicLoadJs = (url) => {
 
 // 获取UUID
 const getUUID = () => {
-  return +new Date() + Math.random().toString(16).replace(".", "");
+  return +new Date() + Math.random().toString(16).replace('.', '');
 };
 
 /** 防抖函数
@@ -105,20 +105,20 @@ const throttle = function (fun, time = 100) {
 const getCloudConfig = (cloudKey) => {
   try {
     const configDataJson = window?.shareitBridge?.syncInvoke(
-      "web-likeitlite",
-      "getCloudConfig",
+      'web-likeitlite',
+      'getCloudConfig',
       JSON.stringify({
         cloudKey: cloudKey,
       })
     );
-    const res = JSON.parse(configDataJson || "{}");
-    if (res && res.responseCode === "0") {
+    const res = JSON.parse(configDataJson || '{}');
+    if (res && res.responseCode === '0') {
       return res.value;
     } else {
       return null;
     }
   } catch (err) {
-    console.error("getCloudConfig Err:", err);
+    console.error('getCloudConfig Err:', err);
     return null;
   }
 };
@@ -130,12 +130,12 @@ const getCloudConfig = (cloudKey) => {
 const openInBrowser = (url) => {
   try {
     window?.shareitBridge?.asyncInvoke(
-      "likeitlite-task-upgrade",
-      "executeAppEvent",
-      "",
+      'likeitlite-task-upgrade',
+      'executeAppEvent',
+      '',
       JSON.stringify({
-        id: "likeitlite-task-upgrade",
-        feedAction: "6",
+        id: 'likeitlite-task-upgrade',
+        feedAction: '6',
         param: url,
       })
     );
@@ -146,16 +146,16 @@ const openInBrowser = (url) => {
 
 // 获取客户端所在的国家
 function getClientCountry() {
-  const locationString = window?.shareitBridge?.syncInvoke("PayPhoneFare", "getLocationInfo", "");
-  const info = JSON.parse(locationString || "{}");
-  return info?.lCountryCode || "";
+  const locationString = window?.shareitBridge?.syncInvoke('PayPhoneFare', 'getLocationInfo', '');
+  const info = JSON.parse(locationString || '{}');
+  return info?.lCountryCode || '';
 }
 
 // 获取浏览器或Webview的语言
 function getWebviewLocale() {
   const language =
     navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
-  return language?.toLowerCase() || "";
+  return language?.toLowerCase() || '';
 }
 
 export {

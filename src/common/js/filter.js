@@ -1,6 +1,6 @@
 export function format_thousand_sep(n) {
-  if (typeof n === "string" || typeof n === "undefined") {
-    if (!n) return "";
+  if (typeof n === 'string' || typeof n === 'undefined') {
+    if (!n) return '';
     n = parseInt(n, 10);
   }
   if (n < 1_000) {
