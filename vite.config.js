@@ -8,6 +8,7 @@ import { viteExternalsPlugin } from "vite-plugin-externals";
 import { createHtmlPlugin } from "vite-plugin-html";
 import viteSentry from "vite-plugin-sentry";
 import pkg from "./package.json";
+import esbuild from "rollup-plugin-esbuild";
 
 const uploadSentrySourceMap = process.env.USE_SENTRY === "true"; //【Sentry】是否生成sourcemap
 
@@ -66,7 +67,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: true,
       port: 8080,
-      open: true,
+      // open: true,
       proxy: {
         "/api": {
           target: env.VITE_API_URL,
@@ -121,6 +122,17 @@ export default defineConfig(({ command, mode }) => {
     },
     plugins: [
       vue(),
+      {
+        ...esbuild({
+          target: "chrome70",
+          // 如有需要可以在这里加 js ts 之类的其他后缀
+          include: /\.(vue|js)$/,
+          loaders: {
+            ".vue": "js",
+          },
+        }),
+        enforce: "post",
+      },
       legacy(),
       createHtmlPlugin({
         minify: true,
