@@ -1,4 +1,5 @@
 // 获取url参数
+import { HYBRID_PORTAL } from "./constant";
 const getUrlParam = (name: string) => {
   const match = location.hash.match(/#[^?]+(\?.+)/);
   const u = window.location.search || (match && match[1]) || "",
@@ -99,20 +100,16 @@ const throttle = function (this: any, fun: Function, time = 100) {
  * @returns
  */
 const getCloudConfig = (cloudKey: any) => {
-  let _a;
   try {
-    const configDataJson =
-      (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
-        ? void 0
-        : _a.syncInvoke(
-            "web-likeitlite",
-            "getCloudConfig",
-            JSON.stringify({
-              cloudKey: cloudKey,
-            })
-          );
+    const configDataJson = window?.shareitBridge?.syncInvoke(
+      HYBRID_PORTAL,
+      "getCloudConfig",
+      JSON.stringify({
+        cloudKey: cloudKey,
+      })
+    );
     const res = JSON.parse(configDataJson || "{}");
-    if (res && res.responseCode === "0") {
+    if (res?.responseCode === "0") {
       return res.value;
     } else {
       return null;
@@ -128,20 +125,17 @@ const getCloudConfig = (cloudKey: any) => {
  * @param {*} url 网页链接
  */
 const openInBrowser = (url: any) => {
-  let _a;
   try {
-    (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
-      ? void 0
-      : _a.asyncInvoke(
-          "likeitlite-task-upgrade",
-          "executeAppEvent",
-          "",
-          JSON.stringify({
-            id: "likeitlite-task-upgrade",
-            feedAction: "6",
-            param: url,
-          })
-        );
+    window?.shareitBridge?.asyncInvoke(
+      HYBRID_PORTAL,
+      "executeAppEvent",
+      "",
+      JSON.stringify({
+        id: HYBRID_PORTAL,
+        feedAction: "6",
+        param: url,
+      })
+    );
   } catch (err) {
     console.error(err);
   }
@@ -149,20 +143,16 @@ const openInBrowser = (url: any) => {
 
 // 获取客户端所在的国家
 function getClientCountry() {
-  let _a;
-  const locationString =
-    (_a = window === null || window === void 0 ? void 0 : window.shareitBridge) === null || _a === void 0
-      ? void 0
-      : _a.syncInvoke("PayPhoneFare", "getLocationInfo", "");
+  const locationString = window?.shareitBridge?.syncInvoke(HYBRID_PORTAL, "getLocationInfo", "");
   const info = JSON.parse(locationString || "{}");
-  return (info === null || info === void 0 ? void 0 : info.lCountryCode) || "";
+  return info?.lCountryCode || "";
 }
 
 // 获取浏览器或Webview的语言
 function getWebviewLocale() {
   const language =
     navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
-  return (language === null || language === void 0 ? void 0 : language.toLowerCase()) || "";
+  return language?.toLowerCase() || "";
 }
 export {
   getUrlParam,

@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import autoprefixer from "autoprefixer";
 import path from "path";
 import pxtorem from "postcss-pxtorem";
+import esbuild from "rollup-plugin-esbuild";
 import { defineConfig, loadEnv, UserConfig } from "vite";
 import { viteExternalsPlugin } from "vite-plugin-externals";
 import { createHtmlPlugin } from "vite-plugin-html";
@@ -121,6 +122,17 @@ export default defineConfig(({ mode }: { mode: string }): UserConfig => {
     },
     plugins: [
       vue(),
+      {
+        ...esbuild({
+          target: "chrome70",
+          // 如有需要可以在这里加 js ts 之类的其他后缀
+          include: /\.(vue|js|ts)$/,
+          loaders: {
+            ".vue": "js",
+          },
+        }),
+        enforce: "post",
+      },
       legacy(),
       createHtmlPlugin({
         minify: true,
