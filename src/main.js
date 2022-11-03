@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import "normalize.css/normalize.css";
 import "@/common/scss/common.scss";
+import "@/common/scss/sprite.scss";
 import Toast from "@/components/common/Toast/index.js";
 import Loading from "@/components/common/Loading.vue";
 import { stLog, portal } from "@/plugins/stLog.js";
